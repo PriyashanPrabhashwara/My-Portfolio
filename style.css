@@ -36,6 +36,7 @@ body {
     position: fixed;
     height: 100vh;
     transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 .profile {
@@ -125,25 +126,30 @@ nav ul li i {
     scroll-margin-top: 80px;
 }
 
-/* Fixed gap between About and Resume */
-#about {
-    padding-bottom: 1rem !important;
-}
-
-#resume {
-    padding-top: 3rem !important;
-}
-
 /* Home Section */
 #home {
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('images/background.jpg') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
 }
 
 #home h1 {
@@ -152,12 +158,16 @@ nav ul li i {
     background: linear-gradient(to right, #00c3ff, #0084ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 #dynamic-text {
     font-size: 1.8rem;
     margin-bottom: 2rem;
     min-height: 2.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .btn {
@@ -171,6 +181,8 @@ nav ul li i {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .btn:hover {
@@ -234,6 +246,7 @@ nav ul li i {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 .project-details {
@@ -264,7 +277,6 @@ nav ul li i {
     gap: 2rem;
     margin-top: 2rem;
     width: 100%;
-    min-height: 0;
 }
 
 .certificate-card {
@@ -274,7 +286,6 @@ nav ul li i {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     aspect-ratio: 1.414 / 1;
     background: #f5f5f5;
-    min-height: 0;
 }
 
 .certificate-card img {
@@ -282,7 +293,7 @@ nav ul li i {
     height: 100%;
     object-fit: contain;
     display: block;
-    min-height: 0;
+    background: white;
 }
 
 .certificate-overlay {
@@ -305,7 +316,6 @@ nav ul li i {
 
 .certificate-card:hover img {
     transform: scale(1.05);
-    transition: transform 0.3s ease;
 }
 
 /* Contact Section */
@@ -342,11 +352,16 @@ nav ul li i {
     border: none;
     background-color: #444;
     color: white;
+    font-family: inherit;
 }
 
 .contact-form textarea {
     min-height: 150px;
     resize: vertical;
+}
+
+.contact-form button[type="submit"] {
+    align-self: flex-start;
 }
 
 /* Footer */
@@ -368,10 +383,6 @@ nav ul li i {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
     .sidebar {
         width: 100%;
         height: auto;
@@ -402,5 +413,16 @@ nav ul li i {
 
     .site-footer {
         position: relative;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar, .btn {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 0;
     }
 }

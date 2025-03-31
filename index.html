@@ -6,6 +6,18 @@
     <title>Priyashan Prabhashwara | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Added background image fix */
+        #home {
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar Navigation -->
@@ -47,7 +59,7 @@
              with a strong foundation in computer hardware and a deep interest in software development, I am constantly refining my skills to solve complex problems and deliver high-quality digital experiences.</p> <br>
             <p> On this GitHub, you'll find projects ranging from web development to mobile apps, showcasing my journey as I continue to grow and learn. I am always eager to explore new technologies and collaborate on exciting projects.
 
-                Feel free to explore my repositories, and don’t hesitate to reach out if you're interested in collaborating or discussing potential opportunities!</p>
+                Feel free to explore my repositories, and don't hesitate to reach out if you're interested in collaborating or discussing potential opportunities!</p>
         </section>
 
         <section id="resume" class="section">
@@ -97,7 +109,7 @@
                         <p>✅ Contact & Inquiry Form – Enables easy communication with hotel staff.</p>
                          <br>
                         <p>Sunset Paradise Hotel is designed to provide a hassle-free booking experience, ensuring convenience for travelers while maintaining an efficient management system for the hotel. 🏨✨ </p>
-                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn" onclick="window.open('https://github.com/PriyashanPrabhashwara/Sunset-Paradise-Web-Application', '_blank')">View Details</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -117,7 +129,7 @@
                         <p>✅ Workout Blog – Fitness tips, workout guides, and success stories.</p>
                         <p>✅ PHP-Powered Backend – Efficient user data handling and form submissions.</p> <br>
                         <p>FitZone is built to engage, inspire, and motivate users on their fitness journey, making health and wellness accessible anytime, anywhere. 🚀💪</p>
-                        <a href="#" class="btn">View Details</a>
+                        <a href="https://github.com/PriyashanPrabhashwara/FitZone-Fitness-Center" class="btn" target="_blank">View Details</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -134,7 +146,7 @@
                         <p>✅ Firebase Authentication – Secure user login and registration.</p>
                         <p>✅ Booking History & Management – Users can view and manage past and upcoming reservations.</p> <br>
                         <p>LuxeVista Resort aims to streamline hotel management and provide a luxurious digital experience for travelers. 🏨📱✨</p>
-                        <a href="#" class="btn">View Details</a>
+                        <a href="#" class="btn" onclick="window.open('https://github.com/PriyashanPrabhashwara/LUXEVISTA-Mobile-Application', '_blank')">View Details</a>
                     </div>
                 </div>
             </div>
@@ -152,7 +164,7 @@
                 <div class="certificate-card">
                     <img src="images/IT_Essentials_certificate_priyashan419-gmail-com_4993a550-1b1d-4909-a553-1cb1e3d52929.pdf.jpg" alt="IT_Essentials_certificate">
                     <div class="certificate-overlay">
-                        <h3>IT Essentials : Pc Hardware and Software</h3>
+                        <h3>IT Essentials : PC Hardware and Software</h3>
                     </div>
                 </div>
                 <div class="certificate-card">
@@ -182,10 +194,10 @@
                     <p>priyashan419@gmail.com</p>
                 </div>
             </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                 <button type="submit" class="btn">Send Message</button>
             </form>
         </section>
@@ -200,6 +212,33 @@
     <script>
         // Auto-update copyright year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mailto link
+            const subject = `New message from ${name} (${email})`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+            const mailtoLink = `mailto:priyashan419@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open default email client
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            this.reset();
+            
+            // Optional: Show success message
+            alert('Thank you for your message! Your email client will open to send the message.');
+        });
+
+        // For projects where I added onclick handlers, you could alternatively update the href directly
+        // I've mixed both approaches to show you options
     </script>
 </body>
 </html>
